@@ -22,8 +22,13 @@
   "dependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
+    "@nestjs/mongoose": "^6.3.1",
     "@nestjs/platform-express": "^6.11.7",
     "@nestjs/swagger": "^4.2.8",
+    "bcrypt": "^3.0.8",
+    "class-validator": "^0.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",

@@ -1,0 +1,327 @@
+User
+UserController
+userModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+User
+UserController
+userModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+property names :
+
+property types :
+
+
+--------- 2° Foreign keys ----------
+
+Do you want to add foreign keys ? (y/n)
+foreign keys :
+
+
+foreign keys class name :
+
+
+foreign keys type :
+
+
+foreign keys path :
+
+
+foreign keys var name :
+
+
+--------- 3° Enums ----------
+
+
+Do you want to add enum properties ? (y/n)
+
+enums prompted :
+
+length : 0
+
+enums path :
+
+
+enums class name :
+
+
+enums var name :
+
+generate enums ...
+generate interface ...
+generate create dto ...
+generate update dto ...
+generate schema ...
+User
+UserController
+userModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+property names :
+
+property types :
+
+
+--------- 2° Foreign keys ----------
+
+Do you want to add foreign keys ? (y/n)
+foreign keys :
+
+
+foreign keys class name :
+
+
+foreign keys type :
+
+
+foreign keys path :
+
+
+foreign keys var name :
+
+
+--------- 3° Enums ----------
+
+
+Do you want to add enum properties ? (y/n)
+
+enums prompted :
+
+length : 0
+
+enums path :
+
+
+enums class name :
+
+
+enums var name :
+
+CREATE /src/user/user.module.ts (81 bytes)
+UPDATE /src/app.module.ts (382 bytes)
+CREATE /src/user/user.controller.spec.ts (479 bytes)
+CREATE /src/user/user.controller.ts (97 bytes)
+UPDATE /src/user/user.module.ts (166 bytes)
+CREATE /src/user/user.service.spec.ts (446 bytes)
+CREATE /src/user/user.service.ts (88 bytes)
+UPDATE /src/user/user.module.ts (240 bytes)
+generate enums ...
+generate interface ...
+generate create dto ...
+generate update dto ...
+generate schema ...
+User
+UserController
+userModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+property names :
+
+property types :
+
+
+--------- 2° Foreign keys ----------
+
+Do you want to add foreign keys ? (y/n)
+foreign keys :
+
+
+foreign keys class name :
+
+
+foreign keys type :
+
+
+foreign keys path :
+
+
+foreign keys var name :
+
+
+--------- 3° Enums ----------
+
+
+Do you want to add enum properties ? (y/n)
+
+enums prompted :
+
+length : 0
+
+enums path :
+
+
+enums class name :
+
+
+enums var name :
+
+CREATE /src/user/user.module.ts (81 bytes)
+UPDATE /src/app.module.ts (431 bytes)
+CREATE /src/user/user.controller.spec.ts (479 bytes)
+CREATE /src/user/user.controller.ts (97 bytes)
+UPDATE /src/user/user.module.ts (166 bytes)
+CREATE /src/user/user.service.spec.ts (446 bytes)
+CREATE /src/user/user.service.ts (88 bytes)
+UPDATE /src/user/user.module.ts (240 bytes)
+generate enums ...
+generate interface ...
+generate create dto ...
+generate update dto ...
+generate schema ...
+User
+UserController
+userModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+property names :
+
+property types :
+
+
+--------- 2° Foreign keys ----------
+
+Do you want to add foreign keys ? (y/n)
+foreign keys :
+
+
+foreign keys class name :
+
+
+foreign keys type :
+
+
+foreign keys path :
+
+
+foreign keys var name :
+
+
+--------- 3° Enums ----------
+
+
+Do you want to add enum properties ? (y/n)
+
+enums prompted :
+
+length : 0
+
+enums path :
+
+
+enums class name :
+
+
+enums var name :
+
+generate enums ...
+generate interface ...
+generate create dto ...
+generate update dto ...
+generate schema ...
+Usertest
+UsertestController
+usertestModel
+Steps : 
+1° Simple properties like string, number[] ...
+2° Foreign keys
+3° Enums
+
+
+--------- 1° Simple properties ----------
+
+
+Do you want to add simple properties ? (y/n)
+property names :
+
+property types :
+
+
+--------- 2° Foreign keys ----------
+
+Do you want to add foreign keys ? (y/n)
+foreign keys :
+
+
+foreign keys class name :
+
+
+foreign keys type :
+
+
+foreign keys path :
+
+
+foreign keys var name :
+
+
+--------- 3° Enums ----------
+
+
+Do you want to add enum properties ? (y/n)
+
+enums prompted :
+
+length : 0
+
+enums path :
+
+
+enums class name :
+
+
+enums var name :
+
+CREATE /src/usertest/usertest.module.ts (85 bytes)
+UPDATE /src/.module.ts (564 bytes)
+CREATE /src/usertest/usertest.controller.spec.ts (507 bytes)
+CREATE /src/usertest/usertest.controller.ts (105 bytes)
+UPDATE /src/usertest/usertest.module.ts (182 bytes)
+CREATE /src/usertest/usertest.service.spec.ts (474 bytes)
+CREATE /src/usertest/usertest.service.ts (92 bytes)
+UPDATE /src/usertest/usertest.module.ts (268 bytes)
+generate enums ...
+generate interface ...
+generate create dto ...
+generate update dto ...
+generate schema ...
