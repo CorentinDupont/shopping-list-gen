@@ -20,7 +20,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   if (environment === 'development') {
@@ -46,6 +46,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV['simple-auth'] = {
+    serverTokenRevocationEndpoint: '/revoke'
+  };
 
   return ENV;
 };

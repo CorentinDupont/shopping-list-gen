@@ -2,4 +2,23 @@
 
 {{!-- Feel free to remove this! --}}
 
+<nav>
+  {{#link-to 'index'}}
+    Home
+  {{/link-to}}
+
+  {{#link-to 'protected'}}
+    Protected
+  {{/link-to}}
+
+  {{!-- if user is authenticated, display logout button --}}
+  {{#if session.isAuthenticated}}
+    <button {{action 'logout'}}>Logout</button>
+  {{else}}
+    {{#link-to 'login'}}
+      Logout
+    {{/link-to}}
+  {{/if}}
+</nav>
+
 {{outlet}}
