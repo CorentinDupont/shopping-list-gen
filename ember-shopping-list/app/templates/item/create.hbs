@@ -1,7 +1,9 @@
 <h1>Nous allons créer un item !</h1>
 
-<form {{action 'HandleCreateItem' on='submit'}}>
+<form {{action 'handleCreateItem' on='submit'}}>
     <label for="name">Créer un item :</label>
-    <input type="text" id="name" required="true">
+    <Input type="text" id="name" @value={{this.name}} required="true"/>
+    <label for="price">Prix :</label>
+    <Input type="text" id="price" @value={{this.price}} required="true"/>
     <button type="submit" >Créer</button>
 </form>
