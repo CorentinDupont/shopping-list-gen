@@ -11,7 +11,7 @@ export default class ItemCreateController extends Controller {
         price: this.get('price')
     });
     
-    item.save();
+    // item.save();
 
   }
 }
