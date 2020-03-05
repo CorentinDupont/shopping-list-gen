@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'ember-shopping-list',
     environment,
@@ -48,6 +48,10 @@ module.exports = function(environment) {
   }
 
   ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:custom',
+    crossOriginWhitelist: ['http://localhost:3001/'],
+    routeAfterAuthentication: '/protected',
     serverTokenRevocationEndpoint: '/revoke'
   };
 
