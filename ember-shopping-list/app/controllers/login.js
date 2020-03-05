@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
-import { action } from '@ember-decorators/object';
-
+import { action } from '@ember/object';
 export default class LoginController extends Controller {
   // session=inject.service('session');
 
