@@ -2,8 +2,8 @@
 
 <form {{action 'handleCreateItem' on='submit'}}>
     <label for="name">Créer un item :</label>
-    <Input type="text" id="name" @value={{this.name}} required="true"/>
+    <Input type="text" id="name" @value={{this.model.name}} required="true"/>
     <label for="price">Prix :</label>
-    <Input type="text" id="price" @value={{this.price}} required="true"/>
+    <Input type="text" id="price" @value={{this.model.price}} required="true"/>
     <button type="submit" >Créer</button>
 </form>

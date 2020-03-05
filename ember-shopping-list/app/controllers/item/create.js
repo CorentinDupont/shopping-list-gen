@@ -5,13 +5,10 @@ export default class ItemCreateController extends Controller {
 
   @action
   handleCreateItem() {
-
-    let item  = this.store.createRecord('item', {
-        name: this.get('name'),
-        price: this.get('price')
-    });
+    debugger;
     
-    // item.save();
+    
+    this.model.save();
 
   }
 }
