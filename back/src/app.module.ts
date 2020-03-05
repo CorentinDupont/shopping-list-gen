@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/shopping-list-gen', { useNewUrlParser: true, useUnifiedTopology: true }),
-    ItemModule
+    ItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
