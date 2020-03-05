@@ -3,21 +3,15 @@
 {{!-- Feel free to remove this! --}}
 
 <nav>
-  {{#link-to 'index'}}
-    Home
-  {{/link-to}}
 
-  {{#link-to 'protected'}}
-    Protected
-  {{/link-to}}
+  <LinkTo @route="index">Home</LinkTo>
+  <LinkTo @route="protected">Protected</LinkTo>
 
   {{!-- if user is authenticated, display logout button --}}
-  {{#if session.isAuthenticated}}
-    <button {{action 'logout'}}>Logout</button>
+  {{#if this.session.isAuthenticated}}
+    <button type="button" {{on 'click' this.logout}}>Logout</button>
   {{else}}
-    {{#link-to 'login'}}
-      Logout
-    {{/link-to}}
+    <LinkTo @route="login">Logout</LinkTo>
   {{/if}}
 </nav>
 
