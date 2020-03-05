@@ -1,4 +1,3 @@
-import { items } from '../objects'; 
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -25,10 +24,6 @@ export default function() {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
   debugger;
-  this.get('/items', () => {
-    return items;
-  });
-  this.post('/items', () => {
-    return items;
-  });
+  this.get('/items');
+  this.post('/items');
 }
