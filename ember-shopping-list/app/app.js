@@ -10,3 +10,20 @@ export default class App extends Application {
 }
 
 loadInitializers(App, config.modulePrefix);
+
+// new Pretender(function () {
+//   this.get('/items', () => {
+//     let all = JSON.stringify(items);
+//     console.log(all);
+//     return [200, {
+//       "Content-Type": "application/json"
+//     }, all]
+//   }),
+//   this.post('/items', () => {
+//     let all = JSON.stringify(items);
+//     console.log(all);
+//     return [200, {
+//       "Content-Type": "application/json"
+//     }, all]
+//   })
+// });

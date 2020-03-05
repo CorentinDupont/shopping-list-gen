@@ -2,4 +2,18 @@
 
 {{!-- Feel free to remove this! --}}
 
+<nav>
+  <LinkTo @route="index" class="btn">Home</LinkTo>
+  {{!-- if user is authenticated, display logout button --}}
+  {{#if session.isAuthenticated}}
+    <LinkTo @route="protected" class="btn">Protected</LinkTo>
+    <a {{action 'invalidateSession'}} class="btn">Logout</a>
+  {{else}}
+    <LinkTo @route="login" {{action 'sessionRequiresAuthentication'}} class="btn">Login</LinkTo>
+    <LinkTo @route="register" class='btn'>Register</LinkTo>
+  {{/if}}
+</nav>
+
+<div id="main" class="main">
 {{outlet}}
+</div>

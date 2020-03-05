@@ -396,9 +396,9 @@ echo "import { "$className" } from './interfaces/"$collectionName".interface';" 
 echo "import { "$serviceName" } from './"$collectionName".service';"                                                                                >> $controller
 echo "import { Create"$className"Dto } from './dto/create-"$collectionName".dto';"                                                                  >> $controller
 echo "import { Update"$className"Dto } from './dto/update-"$collectionName".dto';"                                                                  >> $controller
-echo "import { ApiUseTags } from '@nestjs/swagger';"                                                                                                >> $controller
+echo "import { ApiTags } from '@nestjs/swagger';"                                                                                                >> $controller
 echo ""                                                                                                                                             >> $controller
-echo "@ApiUseTags('"$collectionName"')"                                                                                                             >> $controller
+echo "@ApiTags('"$collectionName"')"                                                                                                             >> $controller
 echo "@Controller('"$collectionName"')"                                                                                                             >> $controller
 echo "export class "$controllerName" {"                                                                                                             >> $controller
 echo ""                                                                                                                                             >> $controller
@@ -514,7 +514,7 @@ function generate_dto () {
     dto=src/$collectionName/dto/${dtoType}-${collectionName}.dto.ts
 
     echo "import { IsNumber, IsString, IsBoolean, IsDateString, IsEnum } from 'class-validator';"               >> $dto
-    echo "import { ApiModelProperty } from '@nestjs/swagger';"                                                  >> $dto
+    echo "import { ApiProperty } from '@nestjs/swagger';"                                                  >> $dto
 
     # import enum util method
     if [ ${#enums[@]} -gt 0 ]; then echo "import { enumToArray } from '../../common/utils/utils';"                >> $dto; fi  
@@ -532,35 +532,35 @@ function generate_dto () {
         case $propertyType in
             "string")
                 echo "    @IsString()"                                                  >> $dto
-                echo "    @ApiModelProperty()"                                          >> $dto
+                echo "    @ApiProperty()"                                          >> $dto
                 ;;
             "string[]")
                 echo "    @IsString({ each: true })"                                    >> $dto
-                echo "    @ApiModelProperty({ type: [String] })"                        >> $dto
+                echo "    @ApiProperty({ type: [String] })"                        >> $dto
                 ;;
             "boolean")
                 echo "    @IsBoolean()"                                                 >> $dto
-                echo "    @ApiModelProperty()"                                          >> $dto
+                echo "    @ApiProperty()"                                          >> $dto
                 ;;
             "boolean[]")
                 echo "    @IsBoolean({ each: true })"                                   >> $dto
-                echo "    @ApiModelProperty({ type: [Boolean] })"                       >> $dto
+                echo "    @ApiProperty({ type: [Boolean] })"                       >> $dto
                 ;;
             "number")
                 echo "    @IsNumber()"                                                  >> $dto
-                echo "    @ApiModelProperty()"                                          >> $dto
+                echo "    @ApiProperty()"                                          >> $dto
                 ;;
             "number[]")
                 echo "    @IsNumber({}, { each: true })"                                >> $dto
-                echo "    @ApiModelProperty({ type: [Number] })"                        >> $dto
+                echo "    @ApiProperty({ type: [Number] })"                        >> $dto
                 ;;
             "Date")
                 echo "    @IsDateString()"                                              >> $dto
-                echo "    @ApiModelProperty({ type: String, format: 'date-time'})"      >> $dto
+                echo "    @ApiProperty({ type: String, format: 'date-time'})"      >> $dto
                 ;;
             "Date[]")
                 echo "    @IsDateString({ each: true })"                                >> $dto
-                echo "    @ApiModelProperty({ type: [String], format: 'date-time' })"   >> $dto
+                echo "    @ApiProperty({ type: [String], format: 'date-time' })"   >> $dto
                 ;;
             *)
         esac
@@ -573,12 +573,12 @@ function generate_dto () {
         if [ ${foreignKeysType[$i]: -2} = "[]" ]; then # array foreign key
             echo ""                                                                         >> $dto
             echo "    @IsString({ each: true })"                                            >> $dto
-            echo "    @ApiModelProperty({ type: [String] })"                                >> $dto
+            echo "    @ApiProperty({ type: [String] })"                                >> $dto
             echo "    readonly "${foreignKeysVarName[$i]}": string[];"                      >> $dto
         else # simple foreign key
             echo ""                                                                         >> $dto
             echo "    @IsString()"                                                          >> $dto
-            echo "    @ApiModelProperty()"                                                  >> $dto
+            echo "    @ApiProperty()"                                                  >> $dto
             echo "    readonly "${foreignKeysVarName[$i]}": string;"                        >> $dto
         fi
     done
@@ -592,12 +592,12 @@ function generate_dto () {
         if [ ${enums[$i]: -2} = "[]" ]; then # array foreign key
             echo ""                                                                                                     >> $dto
             echo "    @IsEnum($enumClassName, { each: true })"                                                          >> $dto
-            echo "    @ApiModelProperty({ enum: enumToArray<$enumClassName>($enumClassName), isArray: true })"          >> $dto
+            echo "    @ApiProperty({ enum: enumToArray<$enumClassName>($enumClassName), isArray: true })"          >> $dto
             echo "    readonly "$enumVarName"List: $enumClassName[];"                                                   >> $dto
         else # simple foreign key
             echo ""                                                                                                     >> $dto
             echo "    @IsEnum($enumClassName)"                                                                          >> $dto
-            echo "    @ApiModelProperty({ enum: enumToArray<$enumClassName>($enumClassName) })"                         >> $dto
+            echo "    @ApiProperty({ enum: enumToArray<$enumClassName>($enumClassName) })"                         >> $dto
             echo "    readonly $enumVarName: $enumClassName;"                                                           >> $dto
         fi
     done

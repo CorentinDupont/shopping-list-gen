@@ -1,0 +1,22 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn{
+    padding: 5px;
+    color: sandybrown;
+    text-decoration: underline;
+    
+}
+
+
+.errorMsg{
+    color: red;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.main{
+    width: 80%;
+    margin: 0 auto;
+}

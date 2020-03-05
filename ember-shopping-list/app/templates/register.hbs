@@ -1,0 +1,12 @@
+<h1>Register</h1>
+
+<form {{action 'accountCreation' on='submit'}}>
+  <label for="identification">New Login :</label>
+  {{input id='identification' placeholder='Enter Login' value=identification}}
+  <label for="password">New Password :</label>
+  {{input id='password' placeholder='Enter Password' type='password' value=password}}
+  <button type="submit">Register</button>
+  {{#if errorMessage}}
+    <p class="errorMsg">{{errorMessage}}</p>
+  {{/if}}
+</form>

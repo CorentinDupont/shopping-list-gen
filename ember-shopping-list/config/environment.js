@@ -1,11 +1,21 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'ember-shopping-list',
     environment,
     rootURL: '/',
     locationType: 'auto',
+    apiHost:  'http://localhost:3009/',
+    contentSecurityPolicy: {
+      'default-src':"'none'",
+      'script-src' :"'self'",
+      'font-src' : "'self'",
+      'connect-src' : "'self' *",
+      'img-src' : "'self'",
+      'style-src' : "'self' *",
+      'media-src' : "'self' ",
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -20,7 +30,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   if (environment === 'development') {
@@ -46,6 +56,18 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV['ember-cli-mirage'] = {
+    enabled: false
+  }
+
+  ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:custom',
+    crossOriginWhitelist: ['http://localhost:3009/'],
+    routeAfterAuthentication: '/protected',
+    serverTokenRevocationEndpoint: '/revoke'
+  };
 
   return ENV;
 };
