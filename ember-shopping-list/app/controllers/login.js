@@ -1,4 +1,6 @@
 import Controller from '@ember/controller';
+import { getOwner } from '@ember/application';
+
 // import { inject } from '@ember/service';
 import {
   action
@@ -6,17 +8,15 @@ import {
 
 
 export default class LoginController extends Controller {
-  // session = inject.service('session');
-
   @action
   async authenticate() {
     let { identification, password } = this.getProperties('identification', 'password');
 
     try {
-      // debugger;
+      let session = getOwner(this).lookup('service:session');
       // await this.session.authenticate('authenticator:oauth2', identification, password);
-      this.get('session').authenticate('authenticator:oauth2', identification, password);
-      debugger;
+      session.authenticate('authenticator:oauth2', identification, password);
+      
     } catch (e) {
       this.set('errorMessage', e.error)
     }
