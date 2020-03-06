@@ -11,4 +11,5 @@ Router.map(function() {
   this.route('protected');
   this.route('token');
   this.route('logout');
+  this.route('register');
 });

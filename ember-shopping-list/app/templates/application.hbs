@@ -10,6 +10,7 @@
     <a {{action 'invalidateSession'}} class="btn">Logout</a>
   {{else}}
     <LinkTo @route="login" {{action 'sessionRequiresAuthentication'}} class="btn">Login</LinkTo>
+    <LinkTo @route="register" class='btn'>Register</LinkTo>
   {{/if}}
 </nav>
 
