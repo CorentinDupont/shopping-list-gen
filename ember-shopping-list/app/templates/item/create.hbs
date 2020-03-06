@@ -1,21 +1,21 @@
 <h1 class="title is-1">Nous allons créer un item !</h1>
 
-<form {{ on 'submit' this.handleCreateItem}}>
-    <label for="name">Créer un item : {{this.error.name}}</label>
-    <Input 
-        type="text" 
-        id="name" 
-        @value={{this.model.name}} 
-        required="true" 
-        class="{{if this.error.name "is-danger"}} input"
-        {{on 'blur' this.validate}}/>
-    <label for="price">Prix : {{this.error.price}}</label>
-    <Input 
-        type="number" 
-        id="price"
-        @value={{this.model.price}} 
-        required="true" 
-        class="{{if this.error.price "is-danger"}} input "
-        {{on 'blur' this.validate}}/>
-    <button type="submit" class="button is-primary" >Créer</button>
-</form>
+<label for="name">Créer un item : {{this.error.name}}</label>
+<Input 
+    type="text" 
+    id="name" 
+    @value={{this.model.name}} 
+    required="true" 
+    class="{{if this.error.name "is-danger"}} input"
+    {{on 'blur' this.validate}}/>
+<label for="price">Prix : {{this.error.price}}</label>
+<Input 
+    type="number" 
+    id="price"
+    @value={{this.model.price}} 
+    required="true" 
+    class="{{if this.error.price "is-danger"}} input "
+    {{on 'blur' this.validate}}/>
+<button type="submit" class="button is-primary" >Créer</button>
+<Input {{on "click" this.handleCreateItem}} @type="button" @value="Créer"/>
+

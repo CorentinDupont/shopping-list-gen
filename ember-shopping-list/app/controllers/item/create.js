@@ -11,9 +11,10 @@ export default class ItemCreateController extends Controller {
   }; 
   @action
   handleCreateItem() {
-    if (this.validate()) 
+    if (this.validate()) {
       this.model.save();
-      this.transitionToRoute('item');
+      this.transitionToRoute('item')
+    }
   }
   @action
   validate() {
@@ -30,9 +31,10 @@ export default class ItemCreateController extends Controller {
       this.error.name = 'Le nom de l\'item ne peut être vide';
     }
 
-    if (testPrice && testName) 
+    if (testPrice && testName){
       return true;
-    else
+    }else{
       return false
+    }
   }
 }
