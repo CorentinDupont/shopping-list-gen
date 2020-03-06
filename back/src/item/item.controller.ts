@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Injectable, Query, Post, Body, ValidationPipe, UsePipes, Put, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Injectable, Query, Post, Body, ValidationPipe, UsePipes, Put, Delete, UseGuards, Req } from '@nestjs/common';
 import { Item } from './interfaces/item.interface';
 import { ItemService } from './item.service';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -12,9 +12,10 @@ export class ItemController {
     constructor(private readonly itemService: ItemService) {}
 
     @Post()
-    async create(@Body() createItemDto: any): Promise<Item> {
+    async create(@Body() createItemDto: CreateItemDto, @Req() req: any): Promise<Item> {
       console.log(createItemDto)
-        return this.itemService.create(createItemDto);
+      console.log(req.body, req.params, req.data);
+      return this.itemService.create(createItemDto);
     }
 
     @Get(':id')

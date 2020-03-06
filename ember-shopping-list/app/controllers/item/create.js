@@ -5,8 +5,6 @@ export default class ItemCreateController extends Controller {
 
   @action
   handleCreateItem() {
-    debugger;
-    
     
     this.model.save();
 
