@@ -15,12 +15,9 @@ module('Acceptance | item', function(hooks) {
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
     await fillIn('input#name', 'Bonjour');
-    await fillIn('input#price', '5');
-    await click('button[type=submit]')
-    await pauseTest()
-    console.log(test)
+    await fillIn('input#price', 5);
+    await click('input[type=button]')
     assert.equal(currentURL(), '/item');
-    
   });
 });
 

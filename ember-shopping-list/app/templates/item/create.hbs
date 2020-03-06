@@ -16,6 +16,5 @@
     required="true" 
     class="{{if this.error.price "is-danger"}} input "
     {{on 'blur' this.validate}}/>
-<button type="submit" class="button is-primary" >Créer</button>
-<Input {{on "click" this.handleCreateItem}} @type="button" @value="Créer"/>
+<Input {{on "click" this.handleCreateItem}} @type="button" @value="Créer" @class="button is-primary"/>
 
