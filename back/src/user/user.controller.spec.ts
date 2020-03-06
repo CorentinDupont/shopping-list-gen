@@ -12,7 +12,11 @@ describe('User Controller', () => {
     controller = module.get<UserController>(UserController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
+  // it('should be defined', () => {
+  //   expect(controller).toBeDefined();
+  // });
+
+  // it('Should be true', () => {
+  //   expect(1).toEqual(1);
+  // });
 });

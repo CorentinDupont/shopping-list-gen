@@ -10,12 +10,4 @@ export class CreateUserDto {
     @IsString()
     @ApiProperty()
     readonly password: string;
-
-    // @IsString({ each: true })
-    // @ApiProperty({ type: [String] })
-    // readonly recipeIds: string[];
-
-    // @IsString({ each: true })
-    // @ApiProperty({ type: [String] })
-    // readonly itemIds: string[];
 }
