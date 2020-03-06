@@ -23,8 +23,8 @@ export default function() {
 
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
-  // this.get('/items');
-  // this.post('/items');
+  this.get('/items');
+  this.post('/items');
 
-  this.passthrough('items');
+  // this.passthrough('items');
 }

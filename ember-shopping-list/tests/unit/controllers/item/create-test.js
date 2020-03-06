@@ -9,4 +9,10 @@ module('Unit | Controller | item/create', function(hooks) {
     let controller = this.owner.lookup('controller:item/create');
     assert.ok(controller);
   });
+
+  test('it creates', function(assert) {
+    let controller = this.owner.lookup('controller:item/create');
+
+    controller.send('handleCreateItem')
+  })
 });

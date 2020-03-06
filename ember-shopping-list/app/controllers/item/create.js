@@ -11,7 +11,7 @@ export default class ItemCreateController extends Controller {
   }; 
   @action
   handleCreateItem() {
-    if (this.validate) 
+    if (this.validate()) 
       this.model.save();
       this.transitionToRoute('item');
   }
@@ -21,7 +21,7 @@ export default class ItemCreateController extends Controller {
       name: null,
       price: null
     }; 
-    const testPrice = typeof this.model.price === 'number' && Number(this.model.price) !== NaN && this.model.price > 0;
+    const testPrice = typeof Number(this.model.price) === 'number' && !isNaN(this.model.price) && this.model.price > 0;
     const testName = typeof this.model.name === 'string' && !!this.model.name.trim();
     if (!testPrice) {
       this.error.price = 'Le prix doit être un nombre et supérieur à 0';

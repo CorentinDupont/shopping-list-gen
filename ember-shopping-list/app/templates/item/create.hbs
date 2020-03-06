@@ -1,6 +1,6 @@
 <h1 class="title is-1">Nous allons créer un item !</h1>
 
-<form {{action 'handleCreateItem' on='submit'}}>
+<form {{ on 'submit' this.handleCreateItem}}>
     <label for="name">Créer un item : {{this.error.name}}</label>
     <Input 
         type="text" 
