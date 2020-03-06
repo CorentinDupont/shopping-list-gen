@@ -1,10 +1,9 @@
-<h1>{{@title}}</h1>
+<h1 class="title is-2">{{@title}}</h1>
 
-<ul>
-  {{#each @items as |item|}}
-    <li>{{item.name}}</li>
-    <li>{{item.price}}</li>
-  {{/each}}
-</ul>
+{{#each @items as |item|}}
+<div class="box">
+    <p><strong>{{item.name}}</strong> <small>{{item.price}}€</small></p>
+</div>
+{{/each}}
 
 {{yield}}
