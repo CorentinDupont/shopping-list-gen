@@ -10,14 +10,15 @@ export default class ItemCreateController extends Controller {
     price: null
   }; 
   @action
-  handleCreateItem() {
+  async handleCreateItem() {
     if (this.validate()) {
-      this.model.save();
+      await this.model.save();
       this.transitionToRoute('item')
     }
   }
   @action
   validate() {
+    
     this.error = {
       name: null,
       price: null
