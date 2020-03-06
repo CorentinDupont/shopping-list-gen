@@ -20,6 +20,12 @@ module('Acceptance | item', function(hooks) {
     await fillIn('input#price', 5);
     await click('input[type=button]')
     assert.equal(currentURL(), '/item');
+    await visit('/item/create');
+    assert.equal(currentURL(), '/item/create');
+    await fillIn('input#name', 'Bonjour');
+    await fillIn('input#price', 5);
+    await click('input[type=button]')
+    assert.equal(this.element.querySelectorAll('.item-detail').length, 2)
   });
 
   // invalid item creation caused by invalid value in form

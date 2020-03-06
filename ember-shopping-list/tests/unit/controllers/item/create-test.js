@@ -10,9 +10,11 @@ module('Unit | Controller | item/create', function(hooks) {
     assert.ok(controller);
   });
 
-  test('it creates', function(assert) {
+  /*
+  test('it creates', function(/* assert ) {
     let controller = this.owner.lookup('controller:item/create');
 
     controller.send('handleCreateItem')
   })
+  */ 
 });
