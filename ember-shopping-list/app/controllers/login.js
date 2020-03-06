@@ -12,7 +12,16 @@ export default class LoginController extends Controller {
       let session = getOwner(this).lookup('service:session');
       await session.authenticate('authenticator:oauth2', identification, password).catch( (e) => {
         console.error(e);
-       this.set('errorMessage', `${e.status} ${e.statusText} !`);
+        if(e.status == 400){
+          this.set('errorMessage', `Erreur ! identifiant et/ou mot de passe incorrect(s) !`);
+        }
       });
+  }
+
+
+  @action 
+  async logout() {
+    let session = getOwner(this).lookup('service:session');
+    await session.invalidate();
   }
 }

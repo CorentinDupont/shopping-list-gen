@@ -9,4 +9,6 @@ export default class Router extends EmberRouter {
 Router.map(function() {
   this.route('login');
   this.route('protected');
+  this.route('token');
+  this.route('logout');
 });

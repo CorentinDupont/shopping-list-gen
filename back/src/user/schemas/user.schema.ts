@@ -6,7 +6,7 @@ import { hash } from 'bcrypt';
 const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
-    token: String,
+    access_token: String,
     recipeIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
     itemIds: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
 }, { versionKey: false });

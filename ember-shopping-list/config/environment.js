@@ -6,6 +6,7 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    apiHost:  'http://localhost:3009/',
     contentSecurityPolicy: {
       'default-src':"'none'",
       'script-src' :"'self'",
@@ -59,7 +60,7 @@ module.exports = function (environment) {
   ENV['simple-auth'] = {
     store: 'simple-auth-session-store:local-storage',
     authorizer: 'authorizer:custom',
-    crossOriginWhitelist: ['http://localhost:3001/'],
+    crossOriginWhitelist: ['http://localhost:3009/'],
     routeAfterAuthentication: '/protected',
     serverTokenRevocationEndpoint: '/revoke'
   };

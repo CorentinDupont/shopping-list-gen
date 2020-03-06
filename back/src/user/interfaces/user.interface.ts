@@ -6,7 +6,7 @@ export interface User extends mongoose.Document {
     _id? : string;
     username: string;
     password: string;
-    token? : string;
+    access_token? : string;
     // recipeList: Recipe[];
     // itemList: Item[];
 }
