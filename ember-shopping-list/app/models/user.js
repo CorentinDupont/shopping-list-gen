@@ -1,6 +1,6 @@
-import DS from '@ember-data/model';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-    username: DS.attr('string'),
-    password: DS.attr('string')
-})
+export default class UserModel extends Model{
+    @attr username;
+    @attr password;
+}
