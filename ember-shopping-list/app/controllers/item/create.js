@@ -1,9 +1,9 @@
+/* eslint-disable ember/no-ember-super-in-es-classes */
 import Controller from '@ember/controller';
 import  { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class ItemCreateController extends Controller {
-
   @tracked
   error = {
     name: null,
@@ -11,9 +11,15 @@ export default class ItemCreateController extends Controller {
   }; 
   @action
   async handleCreateItem() {
+    const items = await this.store.findAll('item');
     if (this.validate()) {
-      await this.model.save();
-      this.transitionToRoute('item')
+      let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
+      if (tested_item.length > 0) {
+        this.error.name = 'Un item avec ce nom existe déjà'
+      } else {
+        await this.model.save();
+        this.transitionToRoute('item')
+      }
     }
   }
   @action
@@ -31,7 +37,6 @@ export default class ItemCreateController extends Controller {
     if (!testName) {
       this.error.name = 'Le nom de l\'item ne peut être vide';
     }
-
     if (testPrice && testName){
       return true;
     }else{

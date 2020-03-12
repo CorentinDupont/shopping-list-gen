@@ -5,4 +5,4 @@ export default class ItemCreateRoute extends Route {
   model(){
     return this.store.createRecord('item')
   }
-}
+} 
