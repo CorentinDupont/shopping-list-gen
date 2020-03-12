@@ -22,14 +22,14 @@ module('Acceptance | item', function(hooks) {
     assert.equal(currentURL(), '/item');
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
-    await fillIn('input#name', 'Bonjour');
+    await fillIn('input#name', 'Bonsoir');
     await fillIn('input#price', 5);
     await click('input[type=button]')
     assert.equal(this.element.querySelectorAll('.item-detail').length, 2)
   });
 
   // invalid item creation caused by invalid value in form
-  test('create item', async function(assert) {
+  test('bad form informations to create item', async function(assert) {
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
 
@@ -47,6 +47,29 @@ module('Acceptance | item', function(hooks) {
       this.element.querySelector('label[for=price]').textContent,
       priceLabelText,
     )
+  });
+
+  // invalid item creation caused by duplicate item name in db
+  test('duplicate name while creating item', async function(assert) {
+    await visit('/item/create');
+    assert.equal(currentURL(), '/item/create');
+    const nameLabelText = this.element.querySelector('label[for=name]').textContent;
+
+    await fillIn('input#name', 'myItemName');
+    await fillIn('input#price', 5);
+    await click('input[type=button]')
+    
+    await visit('/item/create');
+    await fillIn('input#name', 'myItemName');
+    await fillIn('input#price', 5);
+    await click('input[type=button]');
+
+    assert.equal(currentURL(), '/item/create')
+    assert.notEqual(
+      this.element.querySelector('label[for=name]').textContent,
+      nameLabelText,
+    )
+
   });
 });
 

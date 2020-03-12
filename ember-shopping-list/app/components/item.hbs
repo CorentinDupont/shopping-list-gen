@@ -1,6 +1,6 @@
 <div class="inline-header">
   <h1 class="title is-2">{{@title}}</h1>
-  <LinkTo class="button is-primary" @route="item/create">Ajouter un item</LinkTo>
+  <LinkTo id="add-item-button" class="button is-primary" @route="item/create">Ajouter un item</LinkTo>
 </div>
 {{#each @items as |item|}}
 <div class="box test">
