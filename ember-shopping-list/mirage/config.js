@@ -1,3 +1,5 @@
+import { Response } from 'miragejs';
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -24,7 +26,27 @@ export default function() {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
   this.get('/items');
-  this.post('/items');
+  
+  this.post('/items', function(schema) {
+    let attrs = this.normalizedRequestAttrs()
+    
+    
+    let already_exists = schema.items.findBy({"name": attrs["name"]});
+    if (already_exists){
+      return new Response(400, { 'Content-Type': 'application/vnd.api+json' }, { 'statusCode': 400, 'error': 'bad request' });
+    }else{
+      return schema.items.create(attrs);
+    }
+
+  });
+
+  this.post('token', function() {
+    return '{"recipeIds":[],"itemIds":[],"_id":"5e6b4ba507ae613c343cdeef","username":"azertyui","password":"$2b$10$GIIKij1JYeCueiEVM2dUxOGDDPuCKwkW3NL7KHHalyS2D1jzbhyDq","createdAt":"2020-03-13T09:00:21.197Z","access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNmI0YmE1MDdhZTYxM2MzNDNjZGVlZiIsInVzZXJuYW1lIjoiYXplcnR5dWkiLCJpYXQiOjE1ODQwOTQ3MTV9.SmFSkKXN6hYodpqXOKQY7sZ1Lf-7KDb0BwKtmBAcQRE"}';
+  })
+
+
+  
+  
 
   // this.passthrough('items');
 }

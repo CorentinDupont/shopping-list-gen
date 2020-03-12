@@ -38,10 +38,6 @@ describe('Item Controller', () => {
           provide: APP_INTERCEPTOR,
           useClass: JsonapiInterceptor,
         },
-        {
-          provide: APP_PIPE,
-          useClass: JsonapiPipe,
-        },
       ],
     }).compile();
 

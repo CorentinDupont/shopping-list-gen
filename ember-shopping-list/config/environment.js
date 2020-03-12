@@ -6,7 +6,6 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    apiHost:  'http://localhost:3009/',
     contentSecurityPolicy: {
       'default-src':"'none'",
       'script-src' :"'self'",
@@ -39,6 +38,13 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['simple-auth'] = {
+      store: 'simple-auth-session-store:local-storage',
+      authorizer: 'authorizer:custom',
+      crossOriginWhitelist: ['http://localhost:3009/'],
+      routeAfterAuthentication: '/protected',
+      serverTokenRevocationEndpoint: '/revoke'
+    };
   }
 
   if (environment === 'test') {
@@ -51,23 +57,28 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV['simple-auth'] = {
+      store: 'simple-auth-session-store:ephemeral',
+    };
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV['simple-auth'] = {
+      store: 'simple-auth-session-store:local-storage',
+      authorizer: 'authorizer:custom',
+      crossOriginWhitelist: ['http://localhost:3009/'],
+      routeAfterAuthentication: '/protected',
+      serverTokenRevocationEndpoint: '/revoke'
+    };
   }
 
-  ENV['ember-cli-mirage'] = {
-    enabled: false
-  }
+  // ENV['ember-cli-mirage'] = {
+  //   enabled: true
+  // }
 
-  ENV['simple-auth'] = {
-    store: 'simple-auth-session-store:local-storage',
-    authorizer: 'authorizer:custom',
-    crossOriginWhitelist: ['http://localhost:3009/'],
-    routeAfterAuthentication: '/protected',
-    serverTokenRevocationEndpoint: '/revoke'
-  };
+  
 
   return ENV;
 };
