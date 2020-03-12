@@ -2,10 +2,14 @@
   <h1 class="title is-2">{{@title}}</h1>
   <LinkTo id="add-item-button" class="button is-primary" @route="item/create">Ajouter un item</LinkTo>
 </div>
-{{#each @items as |item|}}
-<div class="box test">
-    <p class="item-detail"><strong>{{item.name}}</strong> <small>{{item.price}}€</small></p>
+
+<div id="item-list">
+  {{#each @items as |item|}}
+  <div class="box">
+      <p class="item-detail"><strong>{{item.name}}</strong> <small>{{item.price}}€</small></p>
+  </div>
+  {{/each}}
 </div>
-{{/each}}
+
 
 {{yield}}
