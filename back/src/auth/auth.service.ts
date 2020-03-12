@@ -1,8 +1,8 @@
 import { Injectable, BadRequestException } from "@nestjs/common";
 import { sign } from "jsonwebtoken";
-import { UserService } from "src/user/user.service";
+import { UserService } from "../user/user.service";
 import { JwtPayload } from "./interfaces/jwt-payload.interface";
-import { CreateUserDto } from "src/user/dto/create-user.dto";
+import { CreateUserDto } from "../user/dto/create-user.dto";
 import { compare } from "bcrypt";
 
 @Injectable()

@@ -11,16 +11,16 @@ import {
 } from "@nestjs/common";
 import {
     CreateUserDto
-} from "src/user/dto/create-user.dto";
+} from "../user/dto/create-user.dto";
 import {
     UserService
-} from "src/user/user.service";
+} from "../user/user.service";
 import {
     JwtPayload
 } from "./interfaces/jwt-payload.interface";
 import {
     User
-} from "src/user/interfaces/user.interface";
+} from "../user/interfaces/user.interface";
 import {
     AuthService
 } from "./auth.service";
