@@ -2,10 +2,16 @@ import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { currentSession, authenticateSession } from 'ember-simple-auth/addon-test-support'
 
-module('Acceptance | item', function(hooks) {
+module('Acceptance | item', async function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
+
+  await authenticateSession({authToken: '12345'})
+  const session = currentSession()
+  debugger
+
   test('visiting /item/create', async function(assert) {
     await visit('/item/create');
 
