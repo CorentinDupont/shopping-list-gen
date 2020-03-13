@@ -14,8 +14,8 @@ export default class ItemCreateController extends Controller {
   async handleCreateItem() {
     const items = await this.store.findAll('item');
     if (this.validate()) {
-      let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
-      if (tested_item.length > 0) {
+      //let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
+      if (false) {
         this.error.name = 'Un ingrédient avec ce nom existe déjà'
       } else {
         this.model.save()

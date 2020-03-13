@@ -3,30 +3,32 @@ import { visit, currentURL, fillIn, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-async function login() {
-  await visit('/login');
-  await fillIn('input#identification', 'string');
-  await fillIn('input#password', 'string');
-  await click('button[type=submit]');
-}
-module('Acceptance | item', function(hooks) {
+import { currentSession, authenticateSession } from 'ember-simple-auth/test-support'
+
+module('Acceptance | create-item', async function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
+  
+  hooks.beforeEach(async function (){
+    await authenticateSession({
+      token: 'abcdDEF',
+      token_type: 'Bearer'
+    });
+  })
+   
 
-  test('login', async function(assert) {
-    await login()
-    assert.equal(currentURL(), '/login')
-  });
+  // test('visiting /item/create', async function(assert) {
+  //   await visit('/login');
+  //   await fillIn('input#identification', 'string');
+  //   await fillIn('input#password', 'string');
+  //   await click('button[type=submit]');
 
-  test('visiting /item/create', async function(assert) {
-    await login()
-    await visit('/item/create');
-    assert.equal(currentURL(), '/item/create');
-  });
+  //   await visit('/item/create');
+  //   assert.equal(currentURL(), '/item/create');
+  // });
 
   // valid item creation
   test('create item', async function(assert) {
-    await login()
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
     await fillIn('input#name', 'Bonjour');
@@ -62,7 +64,7 @@ module('Acceptance | item', function(hooks) {
     )
   });
 
-  // invalid item creation caused by duplicate item name in db
+  //invalid item creation caused by duplicate item name in db
   test('duplicate name while creating item', async function(assert) {
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
@@ -76,7 +78,6 @@ module('Acceptance | item', function(hooks) {
     await fillIn('input#name', 'myItemName');
     await fillIn('input#price', 5);
     await click('input[type=button]');
-
     assert.equal(currentURL(), '/item/create')
     assert.notEqual(
       this.element.querySelector('label[for=name]').textContent,

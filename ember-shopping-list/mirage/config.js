@@ -1,3 +1,5 @@
+import { Response } from 'miragejs';
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -24,7 +26,20 @@ export default function() {
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
   this.get('/items');
-  this.post('/items');
+  
+  this.post('/items', function(schema, request) {
+    let attrs = this.normalizedRequestAttrs()
+    
+    
+    let already_exists = schema.items.findBy({"name": attrs["name"]});
+    if (already_exists){
+      return new Response(400, { 'Content-Type': 'application/vnd.api+json' }, { 'statusCode': 400, 'error': 'bad request' });
+    }else{
+      return schema.items.create(attrs);
+    }
+
+  });
+  
 
   // this.passthrough('items');
 }

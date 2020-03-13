@@ -6,7 +6,6 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
-    apiHost:  'http://localhost:3009/',
     contentSecurityPolicy: {
       'default-src':"'none'",
       'script-src' :"'self'",
@@ -75,9 +74,9 @@ module.exports = function (environment) {
     };
   }
 
-  ENV['ember-cli-mirage'] = {
-    enabled: false
-  }
+  // ENV['ember-cli-mirage'] = {
+  //   enabled: true
+  // }
 
   
 
