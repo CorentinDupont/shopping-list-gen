@@ -2,24 +2,31 @@ import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { currentSession, authenticateSession } from 'ember-simple-auth/addon-test-support'
 
-module('Acceptance | item', async function(hooks) {
+async function login() {
+  await visit('/login');
+  await fillIn('input#identification', 'string');
+  await fillIn('input#password', 'string');
+  await click('button[type=submit]');
+}
+module('Acceptance | item', function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  await authenticateSession({authToken: '12345'})
-  const session = currentSession()
-  debugger
+  test('login', async function(assert) {
+    await login()
+    assert.equal(currentURL(), '/login')
+  });
 
   test('visiting /item/create', async function(assert) {
+    await login()
     await visit('/item/create');
-
     assert.equal(currentURL(), '/item/create');
   });
 
   // valid item creation
   test('create item', async function(assert) {
+    await login()
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
     await fillIn('input#name', 'Bonjour');
