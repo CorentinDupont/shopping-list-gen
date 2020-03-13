@@ -10,6 +10,7 @@ Router.map(function() {
   
   this.route('item', function() {});
   this.route('item/create');
+  this.route('user/create');
   this.route('login');
   this.route('protected');
   this.route('token');

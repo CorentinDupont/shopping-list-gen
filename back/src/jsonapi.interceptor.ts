@@ -2,6 +2,7 @@ import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nes
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ItemSerializer} from './item/item.serializer';
+import {UserSerializer} from './user/user.serializer';
 
 @Injectable()
 export class JsonapiInterceptor implements NestInterceptor {
@@ -12,9 +13,16 @@ export class JsonapiInterceptor implements NestInterceptor {
     .pipe(
       map(data => {
         const path = context.getArgByIndex(0).path;
+        console.log(path)
         if (path.includes('items')) {
-          return ItemSerializer.serialize(data)};
-      }));
+          console.log(data)
+          return ItemSerializer.serialize(data)
+        } else if (path.includes('users')) {
+          console.log("userserializer")
+          return UserSerializer.serialize(data)
+        }
+      }
+    ));
   }
 
 }

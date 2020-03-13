@@ -39,6 +39,7 @@ export class AuthController {
 
     @Post('register')
     async register(@Body() createUserDto: CreateUserDto, @Res() response) {
+        console.log(response)
         const user = await this.userService.create(createUserDto)
         const payload: JwtPayload = {
             id: user._id,

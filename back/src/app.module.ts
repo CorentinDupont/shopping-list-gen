@@ -11,7 +11,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/shopping-list-gen-test', { useNewUrlParser: true, useUnifiedTopology: true }),
+    MongooseModule.forRoot('mongodb://192.168.99.100:27017/shopping-list-gen-test', { useNewUrlParser: true, useUnifiedTopology: true }),
     ItemModule,
     AuthModule,
     UserModule,
