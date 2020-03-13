@@ -24,5 +24,15 @@ module('Acceptance | authentication', async function(hooks) {
     await click('button[type=submit]')
     assert.equal(currentURL(), '/')
   }) 
+
+  test('register qui fonctionne',async function(assert) {
+      debugger
+    await visit('/register')
+    assert.equal(currentURL(), '/register');
+    await fillIn('input#identification', 'lol')
+    await fillIn('input#password', 'lol')
+    await click('button[type=submit]')
+    assert.equal(currentURL(), '/')
+  })
 });
 

@@ -8,5 +8,6 @@ export default class RegisterController extends Controller {
     async accountCreation(){
         let user = this.store.createRecord('user', {username: this.indentification, password: this.password})
         user.save()
+        this.transitionToRoute('login')
     }
 }
