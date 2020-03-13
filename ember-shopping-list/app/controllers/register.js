@@ -1,12 +1,15 @@
 import Controller from '@ember/controller';
-import EmberObject, { action } from '@ember/object';
-import Application from '@ember/application';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class RegisterController extends Controller {
+    @tracked username
+    @tracked password
 
     @action
-    async accountCreation(){
-        let user = this.store.createRecord('user', {username: this.indentification, password: this.password})
+    async create(){
+        let user = this.store.createRecord('user', {username: this.model.username, password: this.model.password})
         user.save()
+        this.transitionToRoute('login')
     }
 }

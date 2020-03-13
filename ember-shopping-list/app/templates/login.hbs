@@ -1,12 +1,24 @@
 <h1>Login</h1>
 
-<form {{action 'authenticate' on='submit'}}>
-  <label for="identification">Login</label>
-  {{input id='identification' placeholder='Enter Login' value=identification}}
-  <label for="password">Password</label>
-  {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button type="submit">Login</button>
-  {{#if errorMessage}}
-    <p class="errorMsg">{{errorMessage}}</p>
-  {{/if}}
-</form>
+<label for="identification">Login</label>
+<Input
+  id='identification'
+  placeholder='Enter Login'
+  @value={{this.identification}}
+/>
+
+<label for="password">Password</label>
+<Input
+  id='password'
+  placeholder='Enter Password'
+  @type='password'
+  @value={{this.password}}
+/>
+<Input {{on "click" this.authenticate}}
+  @type="button"
+  @value="Login"
+  @class="button is-primary"
+/>
+{{#if this.errorMessage}}
+  <p class="errorMsg">{{this.errorMessage}}</p>
+{{/if}}

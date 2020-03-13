@@ -1,12 +1,24 @@
-<h1>Register</h1>
+<label for="username">Username</label>
+<Input 
+    type="text" 
+    id="username" 
+    @value={{this.model.username}} 
+    required="true" 
+    class="input"
+/>
 
-<form {{action 'accountCreation' on='submit'}}>
-  <label for="identification">New Login :</label>
-  {{input id='identification' placeholder='Enter Login' value=identification}}
-  <label for="password">New Password :</label>
-  {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button type="submit">Register</button>
-  {{#if errorMessage}}
-    <p class="errorMsg">{{errorMessage}}</p>
-  {{/if}}
-</form>
+<label for="price">Password</label>
+
+<Input 
+    id="password"
+    @type="password"
+    @value={{this.model.password}} 
+    required="true" 
+    class="input "
+/>
+
+<Input {{on "click" this.create}}
+    @type="button"
+    @value="Créer"
+    @class="button is-primary"
+/>

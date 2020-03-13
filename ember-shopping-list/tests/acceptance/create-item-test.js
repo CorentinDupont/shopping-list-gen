@@ -15,25 +15,13 @@ module('Acceptance | create-item', async function(hooks) {
       token_type: 'Bearer'
     });
   })
-   
-
-  // test('visiting /item/create', async function(assert) {
-  //   await visit('/login');
-  //   await fillIn('input#identification', 'string');
-  //   await fillIn('input#password', 'string');
-  //   await click('button[type=submit]');
-
-  //   await visit('/item/create');
-  //   assert.equal(currentURL(), '/item/create');
-  // });
-
 
   // valid item creation
   test('create item', async function(assert) {
     await visit('/item/create');
     assert.equal(currentURL(), '/item/create');
     await fillIn('input#name', 'Bonjour');
-    await fillIn('input#price', 5);
+    await fillIn('input#price', 2);
     await click('input[type=button]')
     assert.equal(currentURL(), '/item');
     await visit('/item/create');
