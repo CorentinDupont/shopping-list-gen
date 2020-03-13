@@ -14,7 +14,7 @@ export default class ItemCreateController extends Controller {
   async handleCreateItem() {
     const items = await this.store.findAll('item');
     if (this.validate()) {
-      //let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
+      // let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
       if (false) {
         this.error.name = 'Un ingrédient avec ce nom existe déjà'
       } else {
@@ -23,6 +23,7 @@ export default class ItemCreateController extends Controller {
           this.transitionToRoute('item')
         })
         .catch(adapterError => {
+          debugger
           switch(adapterError.errors[0].status) {
             case "400": 
             this.error = {...this.error, name: 'Un ingrédient avec ce nom existe déjà'}

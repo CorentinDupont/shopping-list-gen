@@ -52,7 +52,8 @@ export class AuthController {
 
     @Post('token')
     async login(@Body() createUserDto: CreateUserDto, @Res() response) {
-        const user = await this.authService.login(createUserDto)
+        let user = await this.userService.findByUsername(createUserDto.username)
+        user = await this.authService.login(createUserDto, user)
         const payload: JwtPayload = {
             id: user._id,
             username: user.username

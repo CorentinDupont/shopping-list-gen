@@ -4,6 +4,7 @@ import { UserService } from "../user/user.service";
 import { JwtPayload } from "./interfaces/jwt-payload.interface";
 import { CreateUserDto } from "../user/dto/create-user.dto";
 import { compare } from "bcrypt";
+import { User } from "../user/interfaces/user.interface";
 
 @Injectable()
 export class AuthService{
@@ -22,12 +23,10 @@ export class AuthService{
     }
 
 
-    async login(createUserDto : CreateUserDto){
-        const user = await this.userService.findByUsername(createUserDto.username)
+    async login(createUserDto : CreateUserDto, foundUser: User){
+        if(!foundUser) throw new BadRequestException('Invalid Credentials')
 
-        if(!user) throw new BadRequestException('Invalid Credentials')
-
-        if (await compare(createUserDto.password, user.password)) return user;
+        if (await compare(createUserDto.password, foundUser.password)) return foundUser;
         throw new BadRequestException('Invalid Credentials')
     }
 }

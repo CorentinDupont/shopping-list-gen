@@ -1,53 +1,54 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
-import { inspect, debug } from 'util';
-import { UserSchema } from './schemas/user.schema';
+import {  Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, HttpService, HttpModule } from '@nestjs/common';
 import { AppModule } from '../app.module';
-import { UserModule } from './user.module';
-import { CreateUserDto } from '../user/dto/create-user.dto';
-import { AuthModule } from '../auth/auth.module';
-import { AuthService } from '../auth/auth.service';
-const request = require('supertest');
+import { UserSchema } from '../user/schemas/user.schema';
+import * as request from 'supertest';
+import { UserService } from './user.service';
+import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
 
-const app = require('../main');
-const db = {
-  User: require('./schemas/user.schema')
-}
+// Factory girl 
+const factoryGirl = require('factory-girl');
+const factory = factoryGirl.factory;
 
-//const cleanDb = require('../../test/spec/helpers/cleanDb')
-require('../../test/spec/factories/user').factory
-const factory = require('factory-girl').factory
-
-jest.useFakeTimers();
-
-
+import '../../test/spec/factories/user';
 
 describe('GET /', () => {
 
   let app: INestApplication
-  let httpService : HttpService
-  let usersService = { findAll: () => [{username:'rémi', password:'cureau'} ]};
+  let httpService: HttpService
+  let userService: any
 
   beforeAll(async () => {
+    const userCreated = await factory.build('User').then(userGenerated => {
+      return {
+        "id": userGenerated.id,
+        "username": userGenerated.username,
+        "password": userGenerated.password,
+        "access_token": userGenerated.access_token
+      }
+    });
 
+    userService = {
+      findAll: () => userCreated
+    };
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, HttpModule, UserModule],
-      providers : [UserService]
-    })
+        imports: [AppModule, HttpModule]
+      })
       .overrideProvider(UserService)
-      .useValue(usersService)
+      .useValue(userService)
       .compile();
-    
-    app = module.createNestApplication();
-    httpService = module.get<HttpService>(HttpService);
-    await app.init();
-    })
 
-    it('should get users', async () => {
-      return request(app.getHttpServer()).get('/users').expect(200).expect(
-        usersService.findAll()
-      )
+    app = module.createNestApplication();
+    httpService = module.get < HttpService > (HttpService);
+    await app.init();
+  })
+
+  it('should get users', async () => {
+    return request(app.getHttpServer())
+      .get('/users')
+      .expect(userService.findAll())
+      .expect(200)
   });
 
   afterAll(async () => {
@@ -56,28 +57,52 @@ describe('GET /', () => {
 
 })
 
-describe('POST GOOD CREDENTIALS /', () => {
+
+describe('POST GOOD CREDENTIALS / ❔', () => {
 
   let app: INestApplication
-  let httpService : HttpService
-  let createUser : CreateUserDto = {username:'rémi', password:'cureau'}
-
+  let httpService: HttpService
+  let userService: any
+  let userToAuth: any
   beforeAll(async () => {
+     userToAuth = await factory.build('User').then(userGenerated => {
+      return {
+        // "id": userGenerated.id,
+        "username": userGenerated.username,
+        "password": userGenerated.password,
+        // "access_token": userGenerated.access_token
+      }
+    });
+
+    userService = { 
+      findByUsername: (username: string) => userToAuth,
+      create: (createUserDto: CreateUserDto) => userToAuth
+    }
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, HttpModule],
-    })
+        imports: [AppModule, HttpModule],
+      })
+      .overrideProvider(UserService)
+      .useValue(userService)
       .compile();
-    
-    app = module.createNestApplication();
-    httpService = module.get<HttpService>(HttpService);
-    await app.init();
-    })
 
-    it('post good token', async () => {
-      return request(app.getHttpServer()).post('/token').expect(200).send(
-        createUser
-      )
+    app = module.createNestApplication();
+    httpService = module.get < HttpService > (HttpService);
+    await app.init();
+  })
+
+  it('should create a user to authenticate' , async () => {
+    return request(app.getHttpServer())
+      .post('/users')
+      .send({username:userToAuth.username,password:'password'})
+      .expect(201)
+  });
+
+it('post good token ✅', async () => {
+    return request(app.getHttpServer())
+      .post('/token')
+      .send({username:userToAuth.username,password:'password'})
+      .expect(200)
   });
 
   afterAll(async () => {
@@ -86,33 +111,50 @@ describe('POST GOOD CREDENTIALS /', () => {
 
 })
 
-describe('POST BAD CREDENTIALS/', () => {
+
+
+describe('POST BAD CREDENTIALS/ ❌', () => {
 
   let app: INestApplication
-  let httpService : HttpService
-  let createUser : CreateUserDto = {username:'quentin', password:'dijoux'}
-
+  let httpService: HttpService
+  let userService: any
+  let userToAuth: any
   beforeAll(async () => {
+     userToAuth = await factory.build('User').then(userGenerated => {
+      return {
+        // "id": userGenerated.id,
+        "username": userGenerated.username,
+        "password": userGenerated.password,
+        // "access_token": userGenerated.access_token
+      }
+    });
+
+    userService = { 
+      findByUsername: (username: string) => userToAuth,
+      create: (createUserDto: CreateUserDto) => userToAuth
+    }
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, HttpModule],
-    })
+        imports: [AppModule, HttpModule],
+      })
+      .overrideProvider(UserService)
+      .useValue(userService)
       .compile();
-    
-    app = module.createNestApplication();
-    httpService = module.get<HttpService>(HttpService);
-    await app.init();
-    })
 
-    it('post bad token', async () => {
-      return request(app.getHttpServer()).post('/token').expect(400).send(
-        createUser
-      )
+    app = module.createNestApplication();
+    httpService = module.get < HttpService > (HttpService);
+    await app.init();
+  })
+
+  it('post bad token', async () => {
+    return request(app.getHttpServer())
+    .post('/token')
+    .send({username: userToAuth.username, password:'A wrong password'})
+    .expect(400)
   });
 
   afterAll(async () => {
+    // await cleanDb();
     await app.close();
   })
-
 })
-
