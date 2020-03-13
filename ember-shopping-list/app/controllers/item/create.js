@@ -12,24 +12,17 @@ export default class ItemCreateController extends Controller {
 
   @action
   async handleCreateItem() {
-    const items = await this.store.findAll('item');
     if (this.validate()) {
-      // let tested_item = items.filter(e => e.get('name') === this.model.name && e.get('isNew') !== true)
-      if (false) {
-        this.error.name = 'Un ingrédient avec ce nom existe déjà'
-      } else {
-        this.model.save()
-        .then(() => {
-          this.transitionToRoute('item')
-        })
-        .catch(adapterError => {
-          debugger
-          switch(adapterError.errors[0].status) {
-            case "400": 
-            this.error = {...this.error, name: 'Un ingrédient avec ce nom existe déjà'}
-          }
-        });
-      }
+      this.model.save()
+      .then(() => {
+        this.transitionToRoute('item')
+      })
+      .catch(adapterError => {
+        switch(adapterError.errors[0].status) {
+          case "400": 
+          this.error = {...this.error, name: 'Un ingrédient avec ce nom existe déjà'}
+        }
+      });
     }
   }
   @action

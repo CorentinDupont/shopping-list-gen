@@ -3,7 +3,7 @@ import { visit, currentURL, fillIn, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-import { currentSession, authenticateSession } from 'ember-simple-auth/test-support'
+import { authenticateSession } from 'ember-simple-auth/test-support'
 
 module('Acceptance | create-item', async function(hooks) {
   setupApplicationTest(hooks);
@@ -26,6 +26,7 @@ module('Acceptance | create-item', async function(hooks) {
   //   await visit('/item/create');
   //   assert.equal(currentURL(), '/item/create');
   // });
+
 
   // valid item creation
   test('create item', async function(assert) {
