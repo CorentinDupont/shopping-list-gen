@@ -13,7 +13,7 @@ module('Acceptance | authentication', async function(hooks) {
     await fillIn('input#identification', 'lol')
     await fillIn('input#password', 'lol')
     await click('input[type=button]')
-    assert.equal(currentURL(), '/')
+    assert.equal(currentURL(), '/item')
   }) 
 
   test('register qui fonctionne', async function(assert) {

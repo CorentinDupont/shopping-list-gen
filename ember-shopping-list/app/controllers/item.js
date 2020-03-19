@@ -1,7 +1,4 @@
 import Controller from '@ember/controller';
 
 
-export default class ItemController extends Controller {
-
-    
-}
+export default class ItemController extends Controller { }

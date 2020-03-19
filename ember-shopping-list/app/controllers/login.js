@@ -1,10 +1,6 @@
 import Controller from '@ember/controller';
-import {
-  getOwner
-} from '@ember/application';
-import {
-  action
-} from '@ember/object';
+import { getOwner } from '@ember/application';
+import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 
@@ -15,10 +11,12 @@ export default class LoginController extends Controller {
   @action
   async authenticate() {
     let session = getOwner(this).lookup('service:session');
-    await session.authenticate('authenticator:oauth2', this.identification, this.password).catch((e) => {
+    return await session.authenticate('authenticator:oauth2', this.identification, this.password).then( () => {
+      this.transitionToRoute('item')
+    }).catch((e) => {
       if (e.status == 400) {
         this.set('errorMessage', `Erreur ! identifiant et/ou mot de passe incorrect(s) !`);
-      }
+      } 
     });
   }
 

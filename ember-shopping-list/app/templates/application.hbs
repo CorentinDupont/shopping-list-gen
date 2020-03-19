@@ -1,22 +1,18 @@
 {{!-- The following component displays Ember's default welcome message. --}}
 
-<nav>
-  <LinkTo @route="index" class="btn">Home</LinkTo>
+<nav class="navbar">
+  {{!-- <LinkTo @route="index" class="btn navbar-item">Home</LinkTo> --}}
 
   {{!-- if user is authenticated, display logout button --}}
   {{#if this.session.isAuthenticated}}
 
-    <LinkTo @route="protected" class="btn">Protected</LinkTo>
-    <Input {{on 'click' this.invalidateSession}}
-      @type="button"
-      class="btn"
-      @value="Logout"
-    />
+    <LinkTo @route="item" class="btn navbar-item">Item</LinkTo>
+    <Input id='logout' {{on 'click' this.invalidateSession}} @type="button" class="navbar-item" @value="Logout" />
 
   {{else}}
-
-    <LinkTo @route="login" {{on 'click' this.sessionRequiresAuthentication}} class="btn">Login</LinkTo>
-    <LinkTo @route="register" class='btn'>Register</LinkTo>
+{{!-- 
+    <LinkTo @route="login" class="btn navbar-item">Login</LinkTo>
+    <LinkTo @route="register" class='btn navbar-item'>Register</LinkTo> --}}
 
   {{/if}}
 </nav>

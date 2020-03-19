@@ -1,19 +1,19 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { getOwner } from '@ember/application';
 
-export default class LoginController extends Controller {
-  @tracked
-  session = service()
-
+export default class AppController extends Controller {
+  get session() {
+    return getOwner(this).lookup('service:session');
+  }
+  
   @action
   invalidateSession() {
-    this.get('session').invalidate();
+    this.session.invalidate();
   }
 
   @action
   sessionRequiresAuthentication(){
-    this.get('session').validate();
+    this.session.validate();
   }
 }

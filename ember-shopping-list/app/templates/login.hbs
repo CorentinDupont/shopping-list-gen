@@ -1,24 +1,37 @@
-<h1>Login</h1>
-
-<label for="identification">Login</label>
-<Input
-  id='identification'
-  placeholder='Enter Login'
-  @value={{this.identification}}
-/>
-
-<label for="password">Password</label>
-<Input
-  id='password'
-  placeholder='Enter Password'
-  @type='password'
-  @value={{this.password}}
-/>
-<Input {{on "click" this.authenticate}}
-  @type="button"
-  @value="Login"
-  @class="button is-primary"
-/>
-{{#if this.errorMessage}}
-  <p class="errorMsg">{{this.errorMessage}}</p>
-{{/if}}
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column">
+        <h3 class="title has-text-black">Login</h3>
+        <hr class="login-hr">
+        <p class="subtitle has-text-black">Please login to proceed.</p>
+        <div class="box login-box">
+          <figure class="avatar">
+            <img src="https://cdn.pixabay.com/photo/2017/10/10/11/56/korea-2836948_960_720.jpg" alt='' role="none">
+          </figure>
+          <form>
+            <div class="field">
+              <div class="control">
+                <Input  id='identification'  placeholder='Enter Login'  @value={{this.identification}}  class="input"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <Input  id='password' class="input" placeholder='Enter Password'  @type='password'  @value={{this.password}} autocomplete="on"/>
+              </div>
+            </div>
+            <div class="field">
+            {{#if this.errorMessage}}
+                <p class="errorMsg">{{this.errorMessage}}</p>
+            {{/if}}
+            </div>
+            <div class="field">
+              <LinkTo @route="register">Vous n'avez pas de compte ?</LinkTo>
+            </div>
+           <Input {{on "click" this.authenticate}} @type="button" @value="Login" @class="button is-primary is-large is-fullwidth"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
