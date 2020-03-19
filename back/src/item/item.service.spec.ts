@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { Logger } from '@nestjs/common';
 import { ItemService } from './item.service';
 import { MongoClient, Db } from 'mongodb';
 import { Item } from './interfaces/item.interface';
 import { AppModule } from '../app.module';
 
+const logger = new Logger('Item service spec');
+
 describe('ItemService', () => {
   let service: ItemService;
-  let connection: MongoClient
+  let connection: MongoClient;
   let db: Db;
 
   beforeAll(async () => {
@@ -19,15 +22,15 @@ describe('ItemService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
+      imports: [AppModule],
     }).compile();
 
     service = module.get<ItemService>(ItemService);
   });
 
   afterEach(async () => {
-    db.collection('items').remove({});
-  })
+    await db.collection('items').remove({});
+  });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
@@ -37,7 +40,9 @@ describe('ItemService', () => {
     try {
       await db.collection('items').insert({name: 'item', price: 5});
       await db.collection('items').insert({name: 'item', price: 78});
-    } catch (e) {}
+    } catch (e) {
+      logger.error(e);
+    }
 
     const sameItems = await db.collection('items').find({name: 'item'}).toArray();
     expect(sameItems.length).toBe(1);

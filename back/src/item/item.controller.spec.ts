@@ -24,7 +24,7 @@ describe('Item Controller', () => {
     });
     db = await connection.db(`shopping-list-gen-test`);
   });
-  
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
@@ -48,7 +48,7 @@ describe('Item Controller', () => {
 
   afterEach(async () => {
     await db.collection('items').remove({});
-  })
+  });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
@@ -59,13 +59,13 @@ describe('Item Controller', () => {
       .post('/items')
       .send({data: {type: 'items', attributes: {name: 'item', price: 78}}})
       .expect(201);
-  })
+  });
 
   it('should send 400 trying to insert duplicated item', async () => {
-    await db.collection('items').insertOne({name: 'item', price: 5})
+    await db.collection('items').insertOne({name: 'item', price: 5});
     return request(app.getHttpServer())
       .post('/items')
       .send({data: {type: 'items', attributes: {name: 'item', price: 78}}})
       .expect(400);
-  })
+  });
 });

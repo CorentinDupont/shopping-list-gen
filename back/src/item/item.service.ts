@@ -14,8 +14,8 @@ export class ItemService {
 
     async create(createItemDto: CreateItemDto): Promise<Item> {
         const existingItem = await this.itemModel.findOne({name: createItemDto.name});
-        if (existingItem) throw new BadRequestException('Item already exist.')
-        
+        if (existingItem) throw new BadRequestException('Item already exist.');
+
         const createdItem = new this.itemModel(createItemDto);
         return createdItem.save();
     }

@@ -1,32 +1,32 @@
 import {
-    ApiTags
-} from "@nestjs/swagger";
+    ApiTags,
+} from '@nestjs/swagger';
 import {
     Controller,
     Post,
     Body,
     BadRequestException,
     HttpStatus,
-    Res
-} from "@nestjs/common";
+    Res,
+} from '@nestjs/common';
 import {
-    CreateUserDto
-} from "../user/dto/create-user.dto";
+    CreateUserDto,
+} from '../user/dto/create-user.dto';
 import {
-    UserService
-} from "../user/user.service";
+    UserService,
+} from '../user/user.service';
 import {
-    JwtPayload
-} from "./interfaces/jwt-payload.interface";
+    JwtPayload,
+} from './interfaces/jwt-payload.interface';
 import {
-    User
-} from "../user/interfaces/user.interface";
+    User,
+} from '../user/interfaces/user.interface';
 import {
-    AuthService
-} from "./auth.service";
+    AuthService,
+} from './auth.service';
 import {
-    compare
-} from "bcrypt";
+    compare,
+} from 'bcrypt';
 
 @ApiTags()
 @Controller()
@@ -34,32 +34,31 @@ export class AuthController {
 
     constructor(
         private readonly userService: UserService,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
     ) {}
 
     @Post('register')
     async register(@Body() createUserDto: CreateUserDto, @Res() response) {
-        console.log(response)
-        const user = await this.userService.create(createUserDto)
+        const user = await this.userService.create(createUserDto);
         const payload: JwtPayload = {
             id: user._id,
-            username: user.username
-        }
-        const access_token = await this.authService.signPayload(payload)
-        user.access_token = access_token
-        return response.status(HttpStatus.OK).json(user)
+            username: user.username,
+        };
+        const accessToken = await this.authService.signPayload(payload);
+        user.access_token = accessToken;
+        return response.status(HttpStatus.OK).json(user);
     }
 
     @Post('token')
     async login(@Body() createUserDto: CreateUserDto, @Res() response) {
-        let user = await this.userService.findByUsername(createUserDto.username)
-        user = await this.authService.login(createUserDto, user)
+        let user = await this.userService.findByUsername(createUserDto.username);
+        user = await this.authService.login(createUserDto, user);
         const payload: JwtPayload = {
             id: user._id,
-            username: user.username
-        }
-        const access_token = await this.authService.signPayload(payload)
-        user.access_token = access_token
-        return response.status(HttpStatus.OK).json(user)
+            username: user.username,
+        };
+        const accessToken = await this.authService.signPayload(payload);
+        user.access_token = accessToken;
+        return response.status(HttpStatus.OK).json(user);
     }
 }

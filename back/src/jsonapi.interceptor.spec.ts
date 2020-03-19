@@ -42,8 +42,6 @@ describe('JsonapiInterceptor', () => {
     ]);
 
     items = await db.collection('items').find({}).toArray();
-
-    console.log('ITEMMMMSSS', items);
     await app.init();
     return;
   });

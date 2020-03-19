@@ -14,12 +14,12 @@ UserSchema.add(baseProperties);
 
 UserSchema.pre('save', async function(next: mongoose.HookNextFunction) {
     try {
-        if (this.isModified('password')){
-            this['password'] = await hash(this['password'], 10)
+        if (this.isModified('password')) {
+            this.password = await hash(this.password, 10);
         }
     } catch (err) {
         return next(err);
     }
-})
+});
 
 export { UserSchema };

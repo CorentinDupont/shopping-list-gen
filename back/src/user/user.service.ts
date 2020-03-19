@@ -35,9 +35,8 @@ export class UserService {
 
     async findByUsername(username: string): Promise<User> {
         return this.userModel.findOne({
-            username
+            username,
         });
     }
-
 
 }

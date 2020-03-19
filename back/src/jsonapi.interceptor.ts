@@ -13,15 +13,12 @@ export class JsonapiInterceptor implements NestInterceptor {
     .pipe(
       map(data => {
         const path = context.getArgByIndex(0).path;
-        console.log(path)
         if (path.includes('items')) {
-          console.log(data)
-          return ItemSerializer.serialize(data)
+          return ItemSerializer.serialize(data);
         } else if (path.includes('users')) {
-          console.log("userserializer")
-          return UserSerializer.serialize(data)
+          return UserSerializer.serialize(data);
         }
-      }
+      },
     ));
   }
 
