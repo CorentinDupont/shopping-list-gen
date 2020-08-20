@@ -27,7 +27,7 @@
     "@nestjs/swagger": "^4.2.8",
     "@types/jsonapi-serializer": "^3.6.2",
     "@types/mongodb": "^3.5.2",
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "class-validator": "^0.11.0",
     "jsonapi-serializer": "^3.6.6",
