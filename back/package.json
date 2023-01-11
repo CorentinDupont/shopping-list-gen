@@ -29,7 +29,7 @@
     "@types/mongodb": "^3.5.2",
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "jsonapi-serializer": "^3.6.6",
     "factory-girl": "^5.0.4",
     "jsonwebtoken": "^8.5.1",
